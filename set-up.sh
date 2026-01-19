@@ -25,20 +25,14 @@ green='\e[0;32m'
 TIME=$(date '+%d %b %Y')
 IP_FILE="/usr/bin/.ipvps"
 MYIP=$(curl -sL ip.dekaa.my.id)
-eval $(wget -qO- "satria293.dekaa.my.id")
 echo "$MYIP" > "$IP_FILE"
-ILLEGAL_FILE="/usr/bin/.ilegal"
-TIMES=10
-if [[ ! -f "$ILLEGAL_FILE" ]]; then
-    echo 0 > "$ILLEGAL_FILE"
-fi
-
-ALLOWED_IP=$(curl -sS "$IZIN" | grep "$MYIP" | awk '{print $4}')
-
+eval $(curl -sL "https://raw.githubusercontent.com/nameless-newbie/fifth-sc/main/izin/ip")
+    ALLOWED_IP=$(curl -sS "$IZIN" | grep "$MYIP" | awk '{print $4}')
+    if [[ "$MYIP" == "$ALLOWED_IP" ]]; then
 if [[ "$MYIP" == "$ALLOWED_IP" ]]; then
     clear
     echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
-    echo -e "\033[42;97m ⚠️       ACCESS ACCEPTED         ⚠️ \033[0m"
+    echo -e "\033[42;97m ⚠️       ACCESS ALLOWED         ⚠️ \033[0m"
     echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
         apt upgrade -y
         apt install -y sudo wget curl ncurses-bin lolcat
@@ -46,19 +40,19 @@ if [[ "$MYIP" == "$ALLOWED_IP" ]]; then
 else
     clear
     echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
-    echo -e "\033[41;1m ⚠️       AKSES DITOLAK          ⚠️ \033[0m"
+    echo -e "\033[41;1m ⚠️       ACCESS DENIED         ⚠️ \033[0m"
     echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
     echo -e ""
     echo -e "        \033[91;1m❌ SCRIPT LOCKED ❌\033[0m"
     echo -e ""
-    echo -e "  \033[0;33m🔒 Your VPS\033[0m $MYIP \033[0;33mHas been Banned\033[0m"
+    echo -e "  \033[0;33m🔒 Your VPS\033[0m $ipsaya \033[0;33mHas been Banned\033[0m"
     echo -e ""
-    echo -e "  \033[91m⚠️  Masa Aktif Sudah Habis ⚠️\033[0m"
-    echo -e "  \033[0;33m💡 Beli izin resmi hanya dari Admin!\033[0m"
+    echo -e "  \033[91m⚠️  Active Period Has Expired ⚠️\033[0m"
+    echo -e "  \033[0;33m💡 Purchase official licenses only from the Admin!\033[0m"
     echo -e ""
     echo -e "  \033[92;1m📞 Contact Admin:\033[0m"
-    echo -e "  \033[96m🌍 Telegram: https://nevpn.site\033[0m"
-    echo -e "  \033[96m📱 WhatsApp: https://whatsapp.nevpn.site\033[0m"
+    echo -e "  \033[96m🌍 Telegram: https://t.me/kuzavpn[0m"
+    echo -e "  \033[96m📱 WhatsApp: https://wa.me/628971173434[0m"
     echo -e ""
     echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
     ATTEMPTS=$(cat "$ILLEGAL_FILE")
@@ -75,12 +69,17 @@ export IP=$( curl -sL ip.dekaa.my.id )
 
 function Banner_Newbie {
 clear
-echo -e "${BLUE}----------------------------------------------------------"
-echo -e "  Welcome To SATRIA STORE Script Installer Stable Edition "
-echo -e "     This Will Quick Setup VPN Server On Your Server"
-echo -e "         Auther : NEWBIEVPN [ KURNIAWAN SETIADI ]"
-echo -e "           © Recode By Newbie VPN [ 2024 ]"
-echo -e "----------------------------------------------------------${NC}"
+version=$(curl -sSL https://raw.githubusercontent.com/nameless-newbie/fifth-sc/main/versi)
+echo -e "${BLUE}=========================================================="
+echo -e "        Welcome to KuzaVPN AutoScript Installer v${version}"
+echo -e "=========================================================="
+echo -e "  This script provides a quick and automated VPN setup"
+echo -e "  for your server with minimal configuration required."
+echo -e ""
+echo -e "  Author  : KuzaVPN"
+echo -e "  Telegram: t.me/kuzavpn"
+echo -e "  © 2026 KuzaVPN. All Rights Reserved."
+echo -e "==========================================================${NC}"
 echo ""
 }
 Banner_Newbie
@@ -174,7 +173,7 @@ echo -e "${ERROR} ${REDBG} $1 ${FONT}"
 function print_success() {
 if [[ 0 -eq $? ]]; then
 echo -e "${green} =============================== ${FONT}"
-echo -e "${Green} # $1 berhasil dipasang"
+echo -e "${Green} # $1 Successfully installed"
 echo -e "${green} =============================== ${FONT}"
 sleep 2
 fi
@@ -240,7 +239,7 @@ fi
 }
 function base_package() {
 clear
-print_install "Menginstall Packet Yang Dibutuhkan"
+print_install "Installing the required packages"
 apt install at -y
 apt install zip pwgen openssl socat cron bash-completion -y
 apt install figlet -y
@@ -269,25 +268,25 @@ sudo apt-get autoremove -y
 sudo systemctl enable chrony --now
 chronyc sourcestats -v
 chronyc tracking -v
-print_success "Packet Yang Dibutuhkan"
+print_success "The required packages has been installed"
 }
 clear
 function pasang_domain() {
     clear
-    echo -e "${green}Proses Menentukan Domain...${NC}"
+    echo -e "${green}Determining domain configuration...${NC}"
     sleep 1
 
     if [[ "$domain_input" == "random" ]]; then
         SUBDOMAIN="$(tr -dc 'a-z0-9' </dev/urandom | head -c5)"
         host1="$SUBDOMAIN.dekaa.my.id"
-        echo -e "${green}Menggunakan random domain: $host1${NC}"
+        echo -e "${green}Using a randomly generated domain: $host1${NC}"
 
         # Proses pointing subdomain
         wget ${REPO}install/pointing.sh && chmod +x pointing.sh && ./pointing.sh
         rm -f /root/pointing.sh
     else
         host1="$domain_input"
-        echo -e "${green}Menggunakan domain dari parameter: $host1${NC}"
+        echo -e "${green}Using domain provided via parameter: $host1${NC}"
     fi
     echo "$host1" > /etc/xray/domain
     echo "$host1" > /root/domain
@@ -302,7 +301,7 @@ EXPSC=$(wget -qO- $IZIN | grep $MYIP | awk '{print $3}')
 TIMEZONE=$(printf '%(%H:%M:%S)T')
 TEXT="
 <code>────────────────────</code>
-<b> 🟢 NOTIFICATIONS INSTALL 🟢</b>
+<b> 🟢 INSTALLER NOTIFICATION 🟢</b>
 <code>────────────────────</code>
 <code>user   : </code><code>$Username</code>
 <code>PW     : </code><code>$Password</code>
@@ -314,13 +313,13 @@ TEXT="
 <code>Exp Sc : </code><code>$EXPSC</code>
 <code>────────────────────</code>
 <i>Automatic Notification from Github</i>
-"'&reply_markup={"inline_keyboard":[[{"text":"ᴏʀᴅᴇʀ","url":"https://t.me/newbie_store24"},{"text":"Contack","url":"https://wa.me/6282326322300"}]]}'
+"'&reply_markup={"inline_keyboard":[[{"text":"ᴏʀᴅᴇʀ","url":"https://t.me/kuzavpn"},{"text":"Contack","url":"https://wa.me/628971173434"}]]}'
 curl -s --max-time $TIMES -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
 }
 clear
 function pasang_ssl() {
 clear
-print_install "Memasang SSL Pada Domain"
+print_install "Installing SSL on a Domain"
 rm -rf /etc/xray/xray.key
 rm -rf /etc/xray/xray.crt
 domain=$(cat /root/domain)
@@ -330,7 +329,7 @@ STOPWEBSERVER=$(lsof -i:80 | awk 'NR==2 {print $1}')
 systemctl stop nginx
 systemctl stop haproxy
 mkdir /root/.acme.sh
-curl https://get.acme.sh | sh -s email=awanwengi64@gmail.com
+curl https://get.acme.sh | sh -s email=siagaws@gmail.com
 chmod +x /root/.acme.sh/acme.sh
 /root/.acme.sh/acme.sh --upgrade --auto-upgrade
 /root/.acme.sh/acme.sh --set-default-ca --server letsencrypt
@@ -384,7 +383,7 @@ echo "& plughin Account" >>/etc/ssh/.ssh.db
 }
 function install_xray() {
 clear
-print_install "Core Xray 24.11.30 Latest Version"
+print_install "Core Xray Latest Version"
 domainSock_dir="/run/xray";! [ -d $domainSock_dir ] && mkdir  $domainSock_dir
 chown www-data.www-data $domainSock_dir
 latest_version="$(curl -s https://api.github.com/repos/XTLS/Xray-core/releases | grep tag_name | sed -E 's/.*"v(.*)".*/\1/' | head -n 1)"
@@ -406,7 +405,7 @@ WantedBy=multi-user.target
 EOF
 domain=$(cat /etc/xray/domain)
 IPVS=$(cat /etc/xray/ipvps)
-print_success "Core Xray 24.11.30 Latest Version"
+print_success "Core Xray Latest Version"
 clear
 curl -s ipinfo.io/city?token=75082b4831f909 > /etc/xray/city
 curl -s ipinfo.io/org?token=75082b4831f909  | cut -d " " -f 2-10 > /etc/xray/isp
@@ -436,11 +435,11 @@ LimitNOFILE=1000000
 [Install]
 WantedBy=multi-user.target
 EOF
-print_success "Konfigurasi Packet"
+print_success "Package configuration successfully installed"
 }
 function ssh(){
 clear
-print_install "Memasang Password SSH"
+print_install "Installing SSH Password"
 curl -sS ${REPO}install/password | openssl aes-256-cbc -d -a -pass pass:scvps07gg -pbkdf2 > /etc/pam.d/common-password
 chmod +x /etc/pam.d/common-password
 DEBIAN_FRONTEND=noninteractive dpkg-reconfigure keyboard-configuration
@@ -484,11 +483,11 @@ chmod +x /etc/rc.local
 sed -i '$ i\echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6' /etc/rc.local
 ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
 sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
-print_success "Password SSH"
+print_success "SSH Successfully installed"
 }
 function udp_mini(){
 clear
-print_install "Memasang Service limit Quota"
+print_install "Installing Quota Limit Services"
 wget -q ${REPO}install/limit.sh && chmod +x limit.sh && ./limit.sh
 cd
 wget -q -O /usr/bin/limit-ip "${REPO}install/limit-ip"
@@ -553,17 +552,17 @@ print_success "files Quota Service"
 }
 function ssh_slow(){
 clear
-print_install "Memasang modul SlowDNS Server"
+print_install "Installing SlowDNS Server Module"
 wget -q "${REPO}slowdns/installsl.sh" >/dev/null 2>&1
 chmod +x installsl.sh
 ./installsl.sh | tee /root/install.log
 clear
-print_success "SlowDNS"
+print_success "SlowDNS Module successfully installed"
 }
 clear
 function ins_SSHD(){
 clear
-print_install "Memasang SSHD"
+print_install "Installing SSHD"
 sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
 sed -i '/Port 22/a Port 500' /etc/ssh/sshd_config
 sed -i '/Port 22/a Port 40000' /etc/ssh/sshd_config
@@ -573,23 +572,23 @@ sed -i '/Port 22/a Port 200' /etc/ssh/sshd_config
 sed -i '/Port 22/a Port 22' /etc/ssh/sshd_config
 echo "Banner /etc/issue.net" >>/etc/ssh/sshd_config
 /etc/init.d/ssh restart
-print_success "SSHD"
+print_success "SSHD Successfully installed"
 }
 clear
 function ins_dropbear(){
 clear
-print_install "Menginstall Dropbear"
+print_install "Installing Dropbear"
 apt-get install dropbear -y
 wget -q -O /etc/default/dropbear "${REPO}install/dropbear"
 chmod +x /etc/default/dropbear
 /etc/init.d/dropbear restart
 /etc/init.d/dropbear status
-print_success "Dropbear"
+print_success "Dropbear successfully installed"
 }
 clear
 function ins_vnstat(){
 clear
-print_install "Menginstall Vnstat"
+print_install "Installing Vnstat"
 apt -y install vnstat > /dev/null 2>&1
 /etc/init.d/vnstat restart
 apt -y install libsqlite3-dev > /dev/null 2>&1
@@ -606,17 +605,17 @@ systemctl enable vnstat
 /etc/init.d/vnstat status
 rm -f /root/vnstat-2.6.tar.gz
 rm -rf /root/vnstat-2.6
-print_success "Vnstat"
+print_success "Vnstat successfully installed"
 }
 function ins_openvpn(){
 clear
-print_install "Menginstall OpenVPN"
+print_install "Installing OpenVPN"
 wget ${REPO}install/vpn.sh &&  chmod +x vpn.sh && ./vpn.sh
-print_success "OpenVPN"
+print_success "OpenVPN successfully installed"
 }
 function ins_backup(){
 clear
-print_install "Memasang Backup Server"
+print_install "Installing Server Back Up"
 apt install rclone -y
 printf "q\n" | rclone config
 wget -qO /root/.config/rclone/rclone.conf "https://drive.google.com/u/4/uc?id=11fqMXYYcAz3FKZFQx0T3ktYZirXf5WbE"
@@ -628,12 +627,12 @@ cd
 rm -rf wondershaper
 echo > /home/files
 wget -q ${REPO}install/ipserver && chmod +x ipserver && ./etc/ipserver
-print_success "Backup Server"
+print_success "Server Back Up successfully installed"
 }
 clear
 function ins_swab(){
 clear
-print_install "Memasang Swap 1 G"
+print_install "Installing Swap 1 G"
 gotop_latest="$(curl -s https://api.github.com/repos/xxxserxxx/gotop/releases | grep tag_name | sed -E 's/.*"v(.*)".*/\1/' | head -n 1)"
 gotop_link="https://github.com/xxxserxxx/gotop/releases/download/v$gotop_latest/gotop_v"$gotop_latest"_linux_amd64.deb"
 curl -sL "$gotop_link" -o /tmp/gotop.deb
@@ -648,11 +647,11 @@ chronyd -q 'server 0.id.pool.ntp.org iburst'
 chronyc sourcestats -v
 chronyc tracking -v
 wget ${REPO}install/bbr.sh &&  chmod +x bbr.sh && ./bbr.sh
-print_success "Swap 1 G"
+print_success "Swap 1 G successfully installed"
 }
 function ins_Fail2ban(){
 clear
-print_install "Menginstall Fail2ban"
+print_install "Installing Fail2ban"
 if [ -d '/usr/local/ddos' ]; then
 echo; echo; echo "Please un-install the previous version first"
 exit 0
@@ -662,11 +661,11 @@ fi
 clear
 wget -O /etc/issue.net "${REPO}install/issue.net"
 wget -q ${REPO}install/setrsyslog.sh && chmod +x setrsyslog.sh && ./setrsyslog.sh
-print_success "Fail2ban"
+print_success "Fail2ban successfully installed"
 }
 function ins_epro(){
 clear
-print_install "Menginstall ePro WebSocket Proxy"
+print_install "Installing ePro WebSocket Proxy"
 wget -q ${REPO}sshws/insshws.sh && chmod +x insshws.sh && ./insshws.sh
 wget -q -O /usr/local/share/xray/geosite.dat "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat" >/dev/null 2>&1
 wget -q -O /usr/local/share/xray/geoip.dat "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat" >/dev/null 2>&1
@@ -688,10 +687,10 @@ netfilter-persistent reload
 cd
 apt autoclean -y >/dev/null 2>&1
 apt autoremove -y >/dev/null 2>&1
-print_success "ePro WebSocket Proxy"
+print_success "ePro WebSocket Proxy successfully installed"
 
 clear
-print_install "Menginstall UDP-CUSTOM"
+print_install "Installing UDP-CUSTOM"
 cd
 rm -rf /root/udp
 mkdir -p /root/udp
@@ -748,7 +747,7 @@ systemctl start udp-custom &>/dev/null
 
 echo enable service udp-custom
 systemctl enable udp-custom &>/dev/null
-print_success "UDP-CUSTOM BY NEWBIE STORE VPN"
+print_success "UDP-CUSTOM successfully installed"
 clear
 #print_install "MEMASANG NOOBZVPNS"
 #cd
@@ -797,11 +796,11 @@ cd
 rm -f /root/openvpn
 rm -f /root/key.pem
 rm -f /root/cert.pem
-print_success "All Packet"
+print_success "All Packet restarted"
 }
 function menu(){
 clear
-print_install "Memasang Menu Packet"
+print_install "Installing Menu Package"
 wget ${REPO}menu/update.sh && chmod +x update.sh && ./update.sh
 }
 function profile(){
@@ -897,7 +896,7 @@ TIME_DATE="PM"
 else
 TIME_DATE="AM"
 fi
-print_success "Menu Packet"
+print_success "Package Menu successfully installed"
 }
 function enable_services(){
 clear
@@ -911,7 +910,7 @@ systemctl restart nginx
 systemctl restart xray
 systemctl restart cron
 systemctl restart haproxy
-print_success "Enable Service"
+print_success "Service Enabled"
 clear
 }
 function instal(){
@@ -971,7 +970,7 @@ fun_bar() {
         # Bersihkan dan reset ke awal baris
         tput cr    # Kembali ke awal baris
         tput el    # Hapus seluruh baris
-        echo -ne "  Proses Menginstal File - ["
+        echo -ne "  Installing File Process - ["
         for ((j = 0; j < 10; j++)); do echo -ne "#"; done
     done
 
@@ -1001,9 +1000,9 @@ sysctl -p >/dev/null 2>&1
 Banner_Newbie
 pasang_domain
 Banner_Newbie
-print_install "Proses Memasang Script Tunneling"
+print_install "Tunneling Script Installation Process"
 fun_bar 'instal'
-print_success "Script Selesai Dipasang"
+print_success "Installing script is done"
 echo ""
 history -c
 rm -rf /root/menu
@@ -1022,7 +1021,7 @@ if ! grep -q "$username" /etc/hosts; then
 fi
 echo -e ""
 echo -e "\033[96m==========================\033[0m"
-echo -e "\033[92m      INSTALL SUCCES      \033[0m"
+echo -e "\033[92m      INSTALLATION SUCCESS      \033[0m"
 echo -e "\033[96m==========================\033[0m"
 echo -e ""
 sleep 2
