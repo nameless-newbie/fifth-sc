@@ -17,7 +17,7 @@ echo -e "\033[1;93m────────────────────�
 echo -e ""
 echo -e "        \033[91;1m❌ SCRIPT LOCKED ❌\033[0m"
 echo -e ""
-echo -e "  \033[0;33m🔒 Your VPS\033[0m $ipsaya \033[0;33mHas been Banned\033[0m"
+echo -e "  \033[0;33m🔒 Your VPS\033[0m $MYIP \033[0;33mHas been Banned\033[0m"
 echo -e ""
 echo -e "  \033[91m⚠️  Active Period Has Expired ⚠️\033[0m"
 echo -e "  \033[0;33m💡 Purchase official licenses only from the Admin!\033[0m"

