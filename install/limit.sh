@@ -2,8 +2,8 @@
 MYIP=$(cat /usr/bin/.ipvps)
 IZIN_FILE="/root/izin/ip"
 IZIN=$(curl -sL "https://raw.githubusercontent.com/nameless-newbie/fifth-sc/main/izin/ip")
-    ALLOWED_IP=$(curl -sS "$IZIN" | grep "$MYIP" | awk '{print $4}')
-    if [[ "$MYIP" == "$ALLOWED_IP" ]]; then
+IZIN="https://raw.githubusercontent.com/nameless-newbie/fifth-sc/main/izin/ip"
+ALLOWED_IP=$(curl -sL "$IZIN" | grep "$MYIP" | awk '{print $4}')
 if [[ "$MYIP" != "$ALLOWED_IP" ]]; then
 echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
 echo -e "\033[41;1m ⚠️       ACCESS DENIED         ⚠️ \033[0m"
@@ -17,8 +17,8 @@ echo -e "  \033[91m⚠️  Active Period Has Expired ⚠️\033[0m"
 echo -e "  \033[0;33m💡 Purchase official licenses only from the Admin!\033[0m"
 echo -e ""
 echo -e "  \033[92;1m📞 Contact Admin:\033[0m"
-echo -e "  \033[96m🌍 Telegram: https://t.me/kuzavpn[0m"
-echo -e "  \033[96m📱 WhatsApp: https://wa.me/628971173434[0m"
+echo -e "  \033[96m🌍 Telegram: https://t.me/kuzavpn\033[0m"
+echo -e "  \033[96m📱 WhatsApp: https://wa.me/628971173434\033[0m"
 echo -e ""
 echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
 
