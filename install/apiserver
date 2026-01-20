@@ -60,16 +60,16 @@ setup_bot() {
     fi
 
     if [ ! -f /usr/bin/api-serversellvpn/api.js ]; then
-        wget -qO /usr/bin/api-serversellvpn.zip "https://drive.google.com/u/4/uc?id=1brWJj81-2D065tDWLlItFR8_onlmxmUi&export=download"
+        wget -qO /usr/bin/api-kuzavpn.zip "https://raw.githubusercontent.com/nameless-newbie/fifth-sc/main/install/api-kuzavpn.zip"
         cd /usr/bin
-        unzip api-serversellvpn.zip
-        rm api-serversellvpn.zip*
-        chmod +x api-serversellvpn/*
+        unzip -P unlock api-kuzavpn.zip -d 
+        rm api-kuzavpn.zip*
+        chmod +x api-kuzavpn/*
         cd
     fi
 
-    if ! npm list --prefix /usr/bin/api-serversellvpn express child_process >/dev/null 2>&1; then
-        npm install --prefix /usr/bin/api-serversellvpn express child_process
+    if ! npm list --prefix /usr/bin/api-kuzavpn express child_process >/dev/null 2>&1; then
+        npm install --prefix /usr/bin/api-kuzavpn express child_process
     fi
 
         # Generate AUTH_KEY random (6 karakter)
