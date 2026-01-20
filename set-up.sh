@@ -1,12 +1,12 @@
 #!/bin/bash
 name="kuzavpn_autoscript"
 domain_input="$1"
-if [[ -z "$name" || -z "$domain_input" ]]; then
-  echo -e "${RED}[ERROR]${NC} Penggunaan: $0 <domain|random>"
-  echo -e "Contoh: Install.sh random"
-  echo -e "        Install.sh domainkeren.com"
-  exit 1
-fi
+#if [[ -z "$name" || -z "$domain_input" ]]; then
+#  echo -e "${RED}[ERROR]${NC} Penggunaan: $0 <domain|random>"
+#  echo -e "Contoh: Install.sh random"
+#  echo -e "        Install.sh domainkeren.com"
+#  exit 1
+#fi
 export DEBIAN_FRONTEND=noninteractive
 echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6
 Green="\e[92;1m"
