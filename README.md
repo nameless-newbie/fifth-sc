@@ -1,5 +1,4 @@
-<p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Capriola&size=40&duration=4000&pause=450&color=F70069&background=FFFFAA00&center=true&random=false&width=600&height=100&lines=SATRIA VPN AUTOSCRIPT !;Explore the world of features!" /></p>
+### KUZAVPN AUTOSCRIPT VPN INSTALLER
 
 ### CLEAR INSTALLER SCRIPT IN YOUR VPS THANKS FOR BIN456789
 ### rebuild deb 10 selain do
@@ -26,7 +25,7 @@
 </code></pre>
 
 ### PERINTAH UPDATE 
-<pre><code>wget -q https://raw.githubusercontent.com/satria293/vip/main/menu/update.sh && chmod +x update.sh && ./update.sh</code></pre>
+<pre><code>wget -q https://raw.githubusercontent.com/nameless-newbie/fifth-sc/main/menu/update.sh && chmod +x update.sh && ./update.sh</code></pre>
 
 ### PERINTAH BACKUP KHUSUS
 <pre><code>wget -qO /usr/sbin/backupot "https://raw.githubusercontent.com/diah082/vip/main/menu/backupot" && chmod +x /usr/sbin/backupot && backupot</code></pre>
@@ -36,23 +35,23 @@
 - DEBIAN 10 11 12
 
 
-### FITUR TAMBAHAN
-- Lakukan Uji Coba dengan memilih Trial Pada Licensi Key
-- Tambah Swap 2 GiB
-- Pemasangan yang dinamis
-- Register IP Dari VPS
-- Pointing Domain 
+### ADDITIONAL FEATURES
+- Try it out by selecting Trial on the License Key
+- Add 2 GiB swap
+- Dynamic installation
+- Register IP from VPS
+- Domain pointing 
 - Xray Core
-- Penambahan fail2ban
-- Auto block sebagian ads indo by default
-- Auto clear log per 10 menit
-- Auto deler expired
-- User Details Akun
+- Add fail2ban
+- Auto block some Indonesian ads by default
+- Auto clear log every 10 minutes
+- Auto delete expired
+- User Account Details
 - Lock Xray
 - Lock SSH
 - Limit IP SSH on
 - Limit IP Xray On
-- Limit Qouta Xray On
+- Limit Xray Quota On
 
 ### PORT INFO
 ```
@@ -83,4 +82,4 @@
 ### Auther
 
 ### CONTACT NEWBIE <br>
-<a href="https://t.me/satria0853" target=”_blank”><img src="https://img.shields.io/static/v1?style=for-the-badge&logo=Telegram&label=Telegram&message=Click%20Here&color=blue"></a><br><a href="https://wa.me/6282288470086" target=”_blank”><img src="https://img.shields.io/static/v1?style=for-the-badge&logo=Whatsapp&label=Whatsapp&message=Click%20Here&color=green"></a><br>
+<a href="https://t.me/kuzavpn" target=”_blank”><img src="https://img.shields.io/static/v1?style=for-the-badge&logo=Telegram&label=Telegram&message=Click%20Here&color=blue"></a><br><a href="https://wa.me/628971173434" target=”_blank”><img src="https://img.shields.io/static/v1?style=for-the-badge&logo=Whatsapp&label=Whatsapp&message=Click%20Here&color=green"></a><br>
