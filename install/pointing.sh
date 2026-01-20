@@ -1,7 +1,7 @@
 #!/bin/bash
 MYIP=$(cat /usr/bin/.ipvps 2>/dev/null || curl -sSL icanhazip.com)
 IZIN_FILE="/root/izin/ip"
-eval $(curl -sL "https://raw.githubusercontent.com/nameless-newbie/fifth-sc/main/izin/ip")
+IZIN=$(curl -sL "https://raw.githubusercontent.com/nameless-newbie/fifth-sc/main/izin/ip")
     ALLOWED_IP=$(curl -sS "$IZIN" | grep "$MYIP" | awk '{print $4}')
 if [[ "$MYIP" != "$ALLOWED_IP" ]]; then
     echo -e "\033[1;93m────────────────────────────────────────────\033[0m"

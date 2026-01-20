@@ -6,7 +6,7 @@ white='\e[037;1m'
 grey='\e[1;36m'
 NC='\e[0m'
 MYIP=$(curl -fsSL ipv4.icanhazip.com)
-eval $(curl -sL "https://raw.githubusercontent.com/nameless-newbie/fifth-sc/main/izin/ip")
+IZIN=$(curl -sL "https://raw.githubusercontent.com/nameless-newbie/fifth-sc/main/izin/ip")
     ALLOWED_IP=$(curl -sS "$IZIN" | grep "$MYIP" | awk '{print $4}')
     if [[ "$MYIP" == "$ALLOWED_IP" ]]; then
         echo -ne

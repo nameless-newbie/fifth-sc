@@ -1,6 +1,6 @@
 #!/bin/bash
 MYIP=$(cat /usr/bin/.ipvps)
-IZIN_FILE="/root/izin/ip"
+IZIN_FILE=$(curl -sL "https://raw.githubusercontent.com/nameless-newbie/fifth-sc/main/izin/ip")
 if [ -f "$IZIN_FILE" ]; then
     CEKIZIN=$(grep "$MYIP" "$IZIN_FILE" | awk '{print $4}')
 else

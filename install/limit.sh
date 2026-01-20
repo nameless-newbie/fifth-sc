@@ -1,7 +1,7 @@
 #!/bin/bash
 MYIP=$(cat /usr/bin/.ipvps)
 IZIN_FILE="/root/izin/ip"
-eval $(curl -sL "https://raw.githubusercontent.com/nameless-newbie/fifth-sc/main/izin/ip")
+IZIN=$(curl -sL "https://raw.githubusercontent.com/nameless-newbie/fifth-sc/main/izin/ip")
     ALLOWED_IP=$(curl -sS "$IZIN" | grep "$MYIP" | awk '{print $4}')
     if [[ "$MYIP" == "$ALLOWED_IP" ]]; then
 if [[ "$MYIP" != "$ALLOWED_IP" ]]; then
