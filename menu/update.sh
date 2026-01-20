@@ -6,11 +6,11 @@ white='\e[037;1m'
 grey='\e[1;36m'
 NC='\e[0m'
 MYIP=$(curl -fsSL ipv4.icanhazip.com)
-IZIN=$(curl -sL "https://raw.githubusercontent.com/nameless-newbie/fifth-sc/main/izin/ip")
-    ALLOWED_IP=$(curl -sS "$IZIN" | grep "$MYIP" | awk '{print $4}')
-    if [[ "$MYIP" == "$ALLOWED_IP" ]]; then
-        echo -ne
-    else
+IZIN="https://raw.githubusercontent.com/nameless-newbie/fifth-sc/main/izin/ip"
+ALLOWED_IP=$(curl -sS "$IZIN" | grep "$MYIP" | awk '{print $4}')
+if [[ "$MYIP" == "$ALLOWED_IP" ]]; then
+    echo -ne
+else
 echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
 echo -e "\033[41;1m ⚠️       ACCESS DENIED         ⚠️ \033[0m"
 echo -e "\033[1;93m────────────────────────────────────────────\033[0m"

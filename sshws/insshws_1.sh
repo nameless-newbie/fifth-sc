@@ -1,13 +1,11 @@
 #!/bin/bash
 MYIP=$(cat /usr/bin/.ipvps)
-IZIN_FILE=$(curl -sL "https://raw.githubusercontent.com/nameless-newbie/fifth-sc/main/izin/ip")
-if [ -f "$IZIN_FILE" ]; then
-    CEKIZIN=$(grep "$MYIP" "$IZIN_FILE" | awk '{print $4}')
-else
-    # Jika file tidak ada, cek dari variabel IZIN
-    ALLOWED_IP=$(curl -sS "$IZIN" | grep "$MYIP" | awk '{print $4}')
-    CEKIZIN=$ALLOWED_IP
-fi
+IZIN_URL="https://raw.githubusercontent.com/nameless-newbie/fifth-sc/main/izin/ip"
+CEKIZIN=$(curl -sS "$IZIN_URL" | grep -w "$MYIP" | awk '{print $4}')
+# Jika file tidak ada, cek dari variabel IZIN
+ALLOWED_IP=$(curl -sS "$IZIN_URL" | grep "$MYIP" | awk '{print $4}')
+CEKIZIN=$ALLOWED_IP
+
 if [ "$MYIP" = "$CEKIZIN" ]; then
     echo -e "Permission Accepted..."
 else

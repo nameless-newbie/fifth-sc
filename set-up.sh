@@ -1,5 +1,5 @@
 #!/bin/bash
-name="kuzavpn_autoscript"
+name="testing"
 domain_input="$1"
 if [[ -z "$name" || -z "$domain_input" ]]; then
   echo -e "${RED}[ERROR]${NC} Penggunaan: $0 <domain|random>"
@@ -32,8 +32,8 @@ if [[ ! -f "$ILLEGAL_FILE" ]]; then
     echo 0 > "$ILLEGAL_FILE"
 fi
 
-IZIN=$(curl -sL "https://raw.githubusercontent.com/nameless-newbie/fifth-sc/main/izin/ip")
-ALLOWED_IP=$(curl -sS "$IZIN" | grep "$MYIP" | awk '{print $4}')
+IZIN="https://raw.githubusercontent.com/nameless-newbie/fifth-sc/main/izin/ip"
+ALLOWED_IP=$(curl -sL "$IZIN" | grep "$MYIP" | awk '{print $4}')
 
 if [[ "$MYIP" == "$ALLOWED_IP" ]]; then
     clear

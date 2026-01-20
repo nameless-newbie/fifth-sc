@@ -6,11 +6,11 @@ yell='\e[1;33m'
 NC='\033[0m'
 red() { echo -e "\\033[31;1m${*}\\033[0m"; }
 MYIP=$(cat /usr/bin/.ipvps)
-IZIN=$(curl -sL "https://raw.githubusercontent.com/nameless-newbie/fifth-sc/main/izin/ip")
-    ALLOWED_IP=$(curl -sS "$IZIN" | grep "$MYIP" | awk '{print $4}')
-    if [[ "$MYIP" == "$ALLOWED_IP" ]]; then
+IZIN="https://raw.githubusercontent.com/nameless-newbie/fifth-sc/main/izin/ip"
+ALLOWED_IP=$(curl -sL "$IZIN" | grep "$MYIP" | awk '{print $4}')
+if [[ "$MYIP" == "$ALLOWED_IP" ]]; then
 echo -ne
-    else
+else
 echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
 echo -e "\033[41;1m ⚠️       ACCESS DENIED         ⚠️ \033[0m"
 echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
