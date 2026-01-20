@@ -57,8 +57,8 @@ else
     echo -e "  \033[0;33m💡 Purchase official licenses only from the Admin!\033[0m"
     echo -e ""
     echo -e "  \033[92;1m📞 Contact Admin:\033[0m"
-    echo -e "  \033[96m🌍 Telegram: https://t.me/kuzavpn [0m"
-    echo -e "  \033[96m📱 WhatsApp: https://wa.me/628971173434 [0m"
+    echo -e "  \033[96m🌍 Telegram: https://t.me/kuzavpn\033[0m"
+    echo -e "  \033[96m📱 WhatsApp: https://wa.me/628971173434\033[0m"
     echo -e ""
     echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
     ATTEMPTS=$(cat "$ILLEGAL_FILE")
